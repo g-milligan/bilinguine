@@ -1,6 +1,4 @@
 jQuery(document).ready(function(){
-  //based on getConfig().user_locales, attach the grammar.js files to the pages
-  loadLocales();
   //if there is a load_lesson function attached to this page
   if(window.hasOwnProperty('load_lesson')){
     //load the lesson
@@ -9,37 +7,6 @@ jQuery(document).ready(function(){
   //==LOAD SVG IMAGES==
   loadSvg();
 });
-function loadLocales(){
-  //get the site root
-  var root=document.location.href;
-  if(root.indexOf('/lesson/')!=-1){
-    root=root.substring(0,root.indexOf('/lesson/'));
-  }else if(root.indexOf('/index.html')!=-1){
-    root=root.substring(0,root.indexOf('/index.html'));
-  }else{
-    if(root.lastIndexOf('/')==root.length-1){
-      root=root.substring(0,root.lastIndexOf('/'));
-    }
-  }root+='/';
-  //function to handle dynamic loading of localized .js files
-  var headElem=jQuery('head:first');
-  var loadJsFile=function(locale,fileName){
-    var fullPath=root+'locale/'+locale+'/'+fileName+'.js';
-    //if this file path is NOT already loaded
-    if(headElem.children('script[src="'+fullPath+'"]:first').length<1){
-      //load it
-      headElem.append('<script type="text/javascript" src="'+fullPath+'"></script>');
-    }
-  };
-  //based on getConfig().user_locales, attach the grammar.js files to the pages
-  var user_locales=getConfig().user_locales;
-  for(var u=0;u<user_locales.length;u++){
-    //get the locale key
-    var locale=user_locales[u];
-    //load the js files for this locale
-    loadJsFile(locale,'grammar');
-  }
-}
 //gets the contents of a function, eg: function functionName(){/* ...contents... */}
 function getFuncStr(functionName){
 	var functionContent = '';

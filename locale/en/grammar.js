@@ -61,7 +61,7 @@ function en_wordTypes(){
         "ico":"preposition"
       },
       "9":{
-        "abbr","interj",
+        "abbr":"interj",
         "def":"is an exclamation used to capture attention or express a strong emotion",
         "eg":["hey","ow","ugh"],
         "ico":"interjection"
